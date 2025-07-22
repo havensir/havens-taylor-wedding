@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      text-align: center;
+      padding: 20px;
+      background-color: #fff8f2;
+      color: #2b2b2b;
+    }
+
+    h2 {
+      font-size: 2em;
+      margin-bottom: 10px;
+    }
+
+    .countdown {
+      font-size: 1.8em;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Countdown to Our Wedding 💐</h2>
+  <div class="countdown" id="countdown"></div>
+
+  <script>
+    const weddingDate = new Date("May 2, 2026 15:00:00").getTime(); // <-- Change this to your actual date & time
+
+    const updateCountdown = () => {
+      const now = new Date().getTime();
+      const timeLeft = weddingDate - now;
+
+      if (timeLeft < 0) {
+        document.getElementById("countdown").innerHTML = "We're married! 🎉";
+        return;
+      }
+
+      const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((timeLeft / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((timeLeft / (1000 * 60)) % 60);
+      const seconds = Math.floor((timeLeft / 1000) % 60);
+
+      document.getElementById("countdown").innerHTML =
+        `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    };
+
+    updateCountdown(); // Initial run
+    setInterval(updateCountdown, 1000); // Update every second
+  </script>
+</body>
+</html>
